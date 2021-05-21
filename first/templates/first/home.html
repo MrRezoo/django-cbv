@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block title-head %}
+    CBV
+{% endblock %}
+
+{% block lead %}
+    this project work with class base views
+{% endblock %}
+
+{% block content %}
+    <h3>Home</h3>
+
+    {% for todo in todos %}
+        <hr/>
+        {{ todo.title }}
+    {% endfor %}
+
+{% endblock %}
