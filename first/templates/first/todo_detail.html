@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    ToDo detail
+{% endblock %}
+
+{% block title-head %}
+    CBV
+{% endblock %}
+
+{% block lead %}
+   see the todo detail
+{% endblock %}
+
+{% block content %}
+  <p>{{ object.title }}</p>
+  <small>{{ object.created }}</small>
+
+{% endblock %}

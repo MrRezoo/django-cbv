@@ -8,5 +8,7 @@ app_name = 'first'
 urlpatterns = [
     # path('', views.home, name='home')
     # path('', TemplateView.as_view(template_name='first/home.html'), name='home')
-    path('', views.Home.as_view(), name='home')
+    path('', views.Home.as_view(), name='home'),
+    # path('<int:pk>/', views.DetailTodo.as_view(), name='detail_todo'),
+    path('<slug:myslug>/', views.DetailTodo.as_view(), name='detail_todo')
 ]

@@ -17,7 +17,6 @@
 
     {% for todo in todos %}
         <hr/>
-
         <a href="{% url 'first:detail_todo' todo.slug %}" >   {{ todo.title }}</a>
     {% endfor %}
 
