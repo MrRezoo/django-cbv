@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    ToDo create
+{% endblock %}
+
+{% block title-head %}
+    CBV
+{% endblock %}
+
+{% block lead %}
+    create todo form
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="btn btn-primary" value="Send">
+    </form>
+{% endblock %}

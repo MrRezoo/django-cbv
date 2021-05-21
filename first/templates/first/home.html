@@ -17,8 +17,11 @@
 
     {% for todo in todos %}
         <hr/>
+        <a href="{% url 'first:detail_todo' todo.slug %}" class="link-info">   {{ todo.title }}</a>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a href="{% url 'first:delete_todo' todo.id %}" class="btn btn-danger btn-sm"> delete</a>
+        </div>
 
-        <a href="{% url 'first:detail_todo' todo.slug %}" >   {{ todo.title }}</a>
     {% endfor %}
 
 {% endblock %}

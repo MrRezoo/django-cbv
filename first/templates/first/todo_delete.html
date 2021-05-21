@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    ToDo delete
+{% endblock %}
+
+{% block title-head %}
+    CBV
+{% endblock %}
+
+{% block lead %}
+    delete todo form
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <p> are you want to delete your todo |> {{ object }}</p>
+        <input type="submit" class="btn btn-danger" value="Send">
+    </form>
+{% endblock %}
