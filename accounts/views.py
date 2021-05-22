@@ -1,0 +1,29 @@
+from django.shortcuts import render
+from django.contrib.auth import views as auth_views
+
+# Create your views here.
+from django.urls import reverse_lazy
+
+
+class UserLogin(auth_views.LoginView):
+    template_name = 'accounts/login.html'
+    # extra_context = {'name': 'reza'}
+
+
+class UserPassReset(auth_views.PasswordResetView):
+    template_name = 'accounts/password_reset_form.html'
+    success_url = reverse_lazy('accounts:password_reset_done')
+    email_template_name = 'accounts/password_reset_email.html'
+
+
+class PasswordResetDone(auth_views.PasswordResetDoneView):
+    template_name = 'accounts/reset_done.html'
+
+
+class PasswordResetConfirm(auth_views.PasswordResetConfirmView):
+    template_name = 'accounts/password_reset_confirm.html'
+    success_url = reverse_lazy('accounts:password_reset_complete')
+
+
+class PasswordRestComplete(auth_views.PasswordResetCompleteView):
+    template_name = 'accounts/password_reset_complete.html'

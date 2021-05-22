@@ -35,7 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'first.apps.FirstConfig'
+    'first.apps.FirstConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -96,6 +97,17 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+LOGIN_REDIRECT_URL = 'first:home'
+LOGOUT_REDIRECT_URL = 'first:home'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'rezam578@gmail.com'
+EMAIL_HOST_PASSWORD = 'degfpzwzfxwjyttx'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'Mr.Rezoo Website <rezam578@gmail.com>'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
