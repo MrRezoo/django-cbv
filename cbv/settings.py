@@ -101,13 +101,19 @@ AUTH_PASSWORD_VALIDATORS = [
 LOGIN_REDIRECT_URL = 'first:home'
 LOGOUT_REDIRECT_URL = 'first:home'
 
+""" Attention """
+"""
+    your email must be exists in own profile
+    django do not handle this and you are going to redirect 'password_reset_done' 
+"""
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'rezam578@gmail.com'
-EMAIL_HOST_PASSWORD = 'degfpzwzfxwjyttx'
+EMAIL_HOST_PASSWORD = 'jrxhorlpdpykpzsj'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'Mr.Rezoo Website <rezam578@gmail.com>'
+DEFAULT_FROM_EMAIL = 'default from email'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/

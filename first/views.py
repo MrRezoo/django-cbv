@@ -1,14 +1,17 @@
 from django.contrib import messages
 from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.utils.text import slugify
 from django.views import View
 
 # Create your views here.
-from django.views.generic import TemplateView, ListView, DetailView, FormView, CreateView, DeleteView, UpdateView
+from django.views.generic import TemplateView, ListView, DetailView, FormView, CreateView, DeleteView, UpdateView, \
+    MonthArchiveView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.edit import FormMixin
 
-from first.forms import TodoCreateForm
-from first.models import Todo
+from first.forms import TodoCreateForm, TodoCommentForm
+from first.models import Todo, Comment
 
 
 class Home(ListView):
@@ -38,16 +41,27 @@ class Home(ListView):
 #     return render(request, 'first/home.html')
 
 
-class DetailTodo(DetailView):  # AppName/ModelName_detail.html
-    # model = Todo
+class DetailTodo(LoginRequiredMixin, FormMixin, DetailView):  # AppName/ModelName_detail.html
+    model = Todo
+    form_class = TodoCommentForm
     slug_field = 'slug'
     slug_url_kwarg = 'myslug'
 
-    def get_queryset(self, **kwargs):
-        if self.request.user.is_authenticated:
-            return Todo.objects.filter(slug=self.kwargs['myslug'])
-        else:
-            return Todo.objects.none()
+    # def get_queryset(self, **kwargs):
+    #     if self.request.user.is_authenticated:
+    #         return Todo.objects.filter(slug=self.kwargs['myslug'])
+    #     else:
+    #         return Todo.objects.none()
+    def get_success_url(self):
+        return reverse('first:detail_todo', kwargs={'myslug': self.object.slug})
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            comment = Comment(todo=self.object, name=form.cleaned_data['name'], body=form.cleaned_data['body'])
+            comment.save()
+            return super().form_valid(form)
 
 
 # class TodoCreate(FormView):
@@ -99,3 +113,7 @@ class UpdateTodo(UpdateView):
         return super().form_valid(form)
 
 
+class MonthTodo(MonthArchiveView):
+    model = Todo
+    date_field = 'created'
+    # month_format = '%m'

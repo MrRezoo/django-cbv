@@ -7,7 +7,6 @@ from django.urls import reverse_lazy
 
 class UserLogin(auth_views.LoginView):
     template_name = 'accounts/login.html'
-    # extra_context = {'name': 'reza'}
 
 
 class UserPassReset(auth_views.PasswordResetView):
@@ -25,5 +24,5 @@ class PasswordResetConfirm(auth_views.PasswordResetConfirmView):
     success_url = reverse_lazy('accounts:password_reset_complete')
 
 
-class PasswordRestComplete(auth_views.PasswordResetCompleteView):
+class PasswordResetComplete(auth_views.PasswordResetCompleteView):
     template_name = 'accounts/password_reset_complete.html'
